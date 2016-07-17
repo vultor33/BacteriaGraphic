@@ -6,12 +6,12 @@
 BacteriaSystem::BacteriaSystem(double timeStep_in)
 {
     timeStep = timeStep_in;
-    constAbsorcao = 0.01;
+    constAbsorcao = 0.1;
     constReacaoAB = 1;
     constFormResiduo = 1;
     constEliminacaoResiduo = 1;
     porcentagemMaxDeDivisao = 0.5e0;
-    maxToxicidade = 50;
+    maxToxicidade = 30;
     valorParaReproducao = 5;
 
     //condicoes inicias
@@ -75,9 +75,9 @@ void BacteriaSystem::propagate()
                 if(residuoNaCelula[i] < 0)
                     residuoNaCelula[i] = 0;
 
-                qDebug() << "i:  " << i << "  ali:  " << alimentoNaCelula[i] << "  rea:  " << reagenteNaCelula[i]
-                      << "  met:  " << metabolitoNaCelula[i] << "  res:  " << residuoNaCelula[i]
-                         << " alimentoforatemp:  " << alimentoForaTemp << "  resForatemp  " << residuoForaTemp;
+               // qDebug() << "i:  " << i << "  ali:  " << alimentoNaCelula[i] << "  rea:  " << reagenteNaCelula[i]
+               //       << "  met:  " << metabolitoNaCelula[i] << "  res:  " << residuoNaCelula[i]
+               //          << " alimentoforatemp:  " << alimentoForaTemp << "  resForatemp  " << residuoForaTemp;
             }
         }
         alimentoFora += alimentoForaTemp;
@@ -87,8 +87,6 @@ void BacteriaSystem::propagate()
         if(residuoFora < 0)
             residuoFora = 0;
 
-        //qDebug() << "fora:  " << alimentoFora << "  res:  " << residuoFora;
-
         for(size_t i = 0; i < alimentoNaCelula.size() ; i++)
         {
             double totalSpecies = alimentoNaCelula[i] + reagenteNaCelula[i] + metabolitoNaCelula[i] + residuoNaCelula[i];
@@ -97,7 +95,6 @@ void BacteriaSystem::propagate()
         }
 
         // testar quem reproduz.
-
 
         k++;
     } while(k < 1000);

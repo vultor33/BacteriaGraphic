@@ -78,10 +78,30 @@ void bacteriaanimation::drawBackground(QPainter *painter, const QRectF &rect)
     painter->drawRect(sceneRect);
 }
 
+void bacteriaanimation::bacteriaUpdate(std::vector<bool> &alive)
+{
+    for(size_t i = 0; i < alive.size(); i++)
+    {
+        if(!alive[i])
+        {
+            QPointF grid = findGridPosition(i);
+            bacteria * bactn = new bacteria();
+            bactn->setDeadAlive(alive[i]);
+            delete allBacterias[i];
+            allBacterias[i] = bactn;
+            allBacterias[i]->setPos((grid.x() + 0.5) * bacHorizonSize + sceneX, (grid.y() + 0.5) * bacVertSize + sceneY);
+            this->addItem(bactn);
+        }
+    }
+
+
+}
+
 void bacteriaanimation::timerEvent(QTimerEvent *event)
 {
     //qDebug() << "Timer ID:" << event->timerId();
 
+    /*
     if (event->timerId() == timerId)
     {
         if(allBacterias.size() < nHorizon * nVert)
@@ -96,6 +116,7 @@ void bacteriaanimation::timerEvent(QTimerEvent *event)
             allBacterias[iBac]->setPos((iSlot + 0.5) * bacHorizonSize + sceneX, (jSlot + 0.5) * bacVertSize + sceneY);
         }
     }
+    */
 
 
     if (event->timerId() == timerAnimation)
@@ -104,37 +125,39 @@ void bacteriaanimation::timerEvent(QTimerEvent *event)
         //dance bacterias
         for(int i=0; i < allBacterias.size(); i++)
         {
-            qreal maxStep = 6;
-            QPointF bacIPos = findGridPosition(i);
-            qreal xOriginalPos = ((bacIPos.x() + 0.5) * bacHorizonSize) + sceneX;
-            qreal yOriginalPos = ((bacIPos.y() + 0.5) * bacVertSize) + sceneY;
-            qreal xActualPos = allBacterias[i]->pos().x();
-            qreal yActualPos = allBacterias[i]->pos().y();
-            qreal dx = randcpp(-2.0,2.0);
-            qreal dy = randcpp(-2.0,2.0);
-            // > 0 tenho q andar pra frente
-            if((xOriginalPos - xActualPos) > bacHorizonSize / maxStep )
-            {
-                if(dx < 0)
-                    dx = -dx;
-            }
-            else if((xOriginalPos - xActualPos) < -bacHorizonSize / maxStep )
-            {
-                if(dx > 0)
-                    dx = -dx;
-            }
-            if((yOriginalPos - yActualPos) > bacVertSize / maxStep )
-            {
-                if(dy < 0)
-                    dy = -dy;
-            }
-            else if((yOriginalPos - yActualPos) < -bacVertSize / maxStep )
-            {
-                if(dy > 0)
-                    dy = -dy;
-            }
             if(allBacterias[i]->getDeadAlive())
+            {
+                qreal maxStep = 6;
+                QPointF bacIPos = findGridPosition(i);
+                qreal xOriginalPos = ((bacIPos.x() + 0.5) * bacHorizonSize) + sceneX;
+                qreal yOriginalPos = ((bacIPos.y() + 0.5) * bacVertSize) + sceneY;
+                qreal xActualPos = allBacterias[i]->pos().x();
+                qreal yActualPos = allBacterias[i]->pos().y();
+                qreal dx = randcpp(-2.0,2.0);
+                qreal dy = randcpp(-2.0,2.0);
+                // > 0 tenho q andar pra frente
+                if((xOriginalPos - xActualPos) > bacHorizonSize / maxStep )
+                {
+                    if(dx < 0)
+                        dx = -dx;
+                }
+                else if((xOriginalPos - xActualPos) < -bacHorizonSize / maxStep )
+                {
+                    if(dx > 0)
+                        dx = -dx;
+                }
+                if((yOriginalPos - yActualPos) > bacVertSize / maxStep )
+                {
+                    if(dy < 0)
+                        dy = -dy;
+                }
+                else if((yOriginalPos - yActualPos) < -bacVertSize / maxStep )
+                {
+                    if(dy > 0)
+                        dy = -dy;
+                }
                 allBacterias[i]->moveBy(dx,dy);
+            }
         }
     }
 }

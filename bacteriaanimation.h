@@ -14,6 +14,8 @@ class bacteriaanimation : public QGraphicsScene
 public:
     bacteriaanimation(qreal animW, qreal animH, QWidget *parent = 0);
 
+    void bacteriaUpdate(std::vector<bool> & alive);
+
 protected:
     void drawBackground(QPainter *painter, const QRectF &rect) Q_DECL_OVERRIDE;
     void timerEvent(QTimerEvent *event) Q_DECL_OVERRIDE;

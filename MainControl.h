@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "bacteriaanimation.h"
+#include "BacteriaSystem.h"
 
 namespace Ui {
 class MainControl;
@@ -19,9 +20,11 @@ public:
 
 private:
     Ui::MainControl *ui;
+    int timerId;
+    void timerEvent(QTimerEvent *event);
 
-    bacteriaanimation * bacta;
-
+    bacteriaanimation * bacta_;
+    BacteriaSystem * bacSystem_;
 
 };
 
