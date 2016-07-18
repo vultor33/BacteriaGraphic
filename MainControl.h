@@ -5,6 +5,7 @@
 
 #include "bacteriaanimation.h"
 #include "BacteriaSystem.h"
+#include "PlotGraph.h"
 
 namespace Ui {
 class MainControl;
@@ -25,6 +26,7 @@ private:
 
     bacteriaanimation * bacta_;
     BacteriaSystem * bacSystem_;
+    PlotGraph * graphAlimento_;
 
 };
 

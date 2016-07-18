@@ -16,11 +16,13 @@ SOURCES += main.cpp\
         MainControl.cpp \
     bacteria.cpp \
     bacteriaanimation.cpp \
-    BacteriaSystem.cpp
+    BacteriaSystem.cpp \
+    PlotGraph.cpp
 
 HEADERS  += MainControl.h \
     bacteria.h \
     bacteriaanimation.h \
-    BacteriaSystem.h
+    BacteriaSystem.h \
+    PlotGraph.h
 
 FORMS    += maincontrol.ui

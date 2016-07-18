@@ -75,9 +75,9 @@ void BacteriaSystem::propagate()
                 if(residuoNaCelula[i] < 0)
                     residuoNaCelula[i] = 0;
 
-                qDebug() << "i:  " << i << "  ali:  " << alimentoNaCelula[i] << "  rea:  " << reagenteNaCelula[i]
-                      << "  met:  " << metabolitoNaCelula[i] << "  res:  " << residuoNaCelula[i]
-                         << " alimentoforatemp:  " << alimentoForaTemp << "  resForatemp  " << residuoForaTemp;
+             //   qDebug() << "i:  " << i << "  ali:  " << alimentoNaCelula[i] << "  rea:  " << reagenteNaCelula[i]
+             //         << "  met:  " << metabolitoNaCelula[i] << "  res:  " << residuoNaCelula[i]
+             //            << " alimentoforatemp:  " << alimentoForaTemp << "  resForatemp  " << residuoForaTemp;
             }
         }
         alimentoFora += alimentoForaTemp;

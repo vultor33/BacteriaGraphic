@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1221</width>
-    <height>482</height>
+    <width>882</width>
+    <height>605</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,30 +17,20 @@
    <widget class="QGraphicsView" name="animation">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>20</x>
       <y>10</y>
-      <width>371</width>
-      <height>291</height>
+      <width>411</width>
+      <height>411</height>
      </rect>
     </property>
    </widget>
-   <widget class="QGraphicsView" name="plot1">
+   <widget class="QGraphicsView" name="plotReagente">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>670</x>
       <y>10</y>
-      <width>391</width>
-      <height>291</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QGraphicsView" name="plot2">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>10</y>
-      <width>391</width>
-      <height>291</height>
+      <width>201</width>
+      <height>201</height>
      </rect>
     </property>
    </widget>
@@ -48,7 +38,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>350</y>
+      <y>470</y>
       <width>61</width>
       <height>20</height>
      </rect>
@@ -60,8 +50,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>303</y>
+      <x>10</x>
+      <y>500</y>
       <width>101</width>
       <height>20</height>
      </rect>
@@ -74,7 +64,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>330</y>
+      <y>440</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -109,13 +99,43 @@
      <string>Kill simulation</string>
     </property>
    </widget>
+   <widget class="QGraphicsView" name="plotResiduo">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>220</y>
+      <width>201</width>
+      <height>201</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="plotAlimento">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>10</y>
+      <width>201</width>
+      <height>201</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="plotMetabolito">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>220</y>
+      <width>201</width>
+      <height>201</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1221</width>
+     <width>882</width>
      <height>21</height>
     </rect>
    </property>

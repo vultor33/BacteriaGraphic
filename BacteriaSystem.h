@@ -10,6 +10,11 @@ public:
 
     void propagate();
 
+    double getAlimento0(){ return alimentoNaCelula[0]; }
+    double getReagente0(){ return reagenteNaCelula[0]; }
+    double getMetabolito0() { return metabolitoNaCelula[0]; }
+    double getResiduo0() { return residuoNaCelula[0]; }
+
     std::vector<double> getAlimento(){return alimentoNaCelula;}
     std::vector<double> getReagente(){return reagenteNaCelula;}
     std::vector<double> getMetabolito(){ return metabolitoNaCelula; }
