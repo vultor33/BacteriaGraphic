@@ -12,7 +12,7 @@ class PlotGraph : public QGraphicsScene
     Q_OBJECT
 
 public:
-    PlotGraph(qreal sizeW, qreal sizeH, qreal startingPoint, QString title = "", QWidget *parent = 0);
+    PlotGraph(qreal sizeW, qreal sizeH, qreal startingPoint, qreal pointsScale_in, QString title = "", QWidget *parent = 0);
 
     void updatePoint(double newPoint);
 

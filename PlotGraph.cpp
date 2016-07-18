@@ -6,7 +6,7 @@
 #include <string>
 #include <sstream>
 
-PlotGraph::PlotGraph(qreal sizeW, qreal sizeH, qreal startingPoint, QString title, QWidget *parent)
+PlotGraph::PlotGraph(qreal sizeW, qreal sizeH, qreal startingPoint, qreal pointsScale_in, QString title, QWidget *parent)
     :QGraphicsScene(parent)
 {
     this->setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -22,8 +22,6 @@ PlotGraph::PlotGraph(qreal sizeW, qreal sizeH, qreal startingPoint, QString titl
     xMax = sceneX + sceneWidth - 10;
     yMax = sceneY + 10;
 
-    qDebug() << "xo:  " << xOrigin << "  yo  " << yOrigin << "  xmax  " << xMax << "  ymax  " << yMax;
-
     addingLine = 0;
     oldPoint = startingPoint;
 
@@ -31,12 +29,13 @@ PlotGraph::PlotGraph(qreal sizeW, qreal sizeH, qreal startingPoint, QString titl
     QGraphicsTextItem *text1 = this->addText(title);
     text1->setPos(-20 + xOrigin + (xMax - xOrigin)/2,yMax - 5);
 
-    pointsScale = (yOrigin-yMax)/2;
+    //pointsScale = (yOrigin-yMax)/2;
+    pointsScale = pointsScale_in;
     QString yMed = QString::number(pointsScale);
     QGraphicsTextItem *pScale = this->addText(yMed);
     pointsScaleLabel = pScale;
     pointsScaleLabel->setPos(xOrigin - 25,yMax + (yOrigin - yMax)/2);
-    this->addLine(xOrigin - 3, yMax + pointsScale + 10, xOrigin + 3, yMax + pointsScale + 10,QPen(Qt::black, 4));
+    this->addLine(xOrigin - 3, yMax + (yOrigin-yMax)/2 + 10, xOrigin + 3, yMax + (yOrigin-yMax)/2 + 10,QPen(Qt::black, 4));
 }
 
 
@@ -49,12 +48,13 @@ void PlotGraph::updatePoint(double newPoint)
 
     addingLine++;
     qreal xStep = 1;
+    qreal yStep = ((yOrigin-yMax)/2) / pointsScale;
     qreal y1a = oldPoint;
     qreal y1b = newPoint;
     this->addLine(xOrigin + (-1 + addingLine) * xStep,
-                  yOrigin - y1a,
+                  yOrigin - y1a * yStep,
                   xOrigin + addingLine * xStep,
-                  yOrigin - y1b,
+                  yOrigin - y1b * yStep,
                   QPen(Qt::blue, 2));
 
     oldPoint = newPoint;

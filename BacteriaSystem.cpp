@@ -11,7 +11,7 @@ BacteriaSystem::BacteriaSystem(double timeStep_in)
     constFormResiduo = 0.1;
     constEliminacaoResiduo = 1;
     porcentagemMaxDeDivisao = 0.5e0;
-    maxToxicidade = 50;
+    maxToxicidade = 41;
     valorParaReproducao = 5;
 
     //condicoes inicias
@@ -120,7 +120,7 @@ void BacteriaSystem::propagate()
         // testar quem reproduz.
 
         k++;
-    } while(k < 100);
+    } while(k < 10);
 }
 
 double BacteriaSystem::advanceEquations(double dx)

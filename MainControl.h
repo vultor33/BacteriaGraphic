@@ -27,6 +27,9 @@ private:
     bacteriaanimation * bacta_;
     BacteriaSystem * bacSystem_;
     PlotGraph * graphAlimento_;
+    PlotGraph * graphReagente_;
+    PlotGraph * graphMetabolito_;
+    PlotGraph * graphResiduo_;
 
 };
 
