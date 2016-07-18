@@ -3,8 +3,10 @@
 #include <QGraphicsTextItem>
 #include <QGraphicsScene>
 #include <QDebug>
+#include <string>
+#include <sstream>
 
-PlotGraph::PlotGraph(qreal sizeW, qreal sizeH, qreal startingPoint, QWidget *parent)
+PlotGraph::PlotGraph(qreal sizeW, qreal sizeH, qreal startingPoint, QString title, QWidget *parent)
     :QGraphicsScene(parent)
 {
     this->setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -15,7 +17,7 @@ PlotGraph::PlotGraph(qreal sizeW, qreal sizeH, qreal startingPoint, QWidget *par
 
     this->setSceneRect(sceneX, sceneY, sceneWidth, sceneHeigth);
 
-    xOrigin = sceneX + 10;
+    xOrigin = sceneX + 30;
     yOrigin = sceneY + sceneHeigth - 20;
     xMax = sceneX + sceneWidth - 10;
     yMax = sceneY + 10;
@@ -24,6 +26,17 @@ PlotGraph::PlotGraph(qreal sizeW, qreal sizeH, qreal startingPoint, QWidget *par
 
     addingLine = 0;
     oldPoint = startingPoint;
+
+    //legenda
+    QGraphicsTextItem *text1 = this->addText(title);
+    text1->setPos(-20 + xOrigin + (xMax - xOrigin)/2,yMax - 5);
+
+    pointsScale = (yOrigin-yMax)/2;
+    QString yMed = QString::number(pointsScale);
+    QGraphicsTextItem *pScale = this->addText(yMed);
+    pointsScaleLabel = pScale;
+    pointsScaleLabel->setPos(xOrigin - 25,yMax + (yOrigin - yMax)/2);
+    this->addLine(xOrigin - 3, yMax + pointsScale + 10, xOrigin + 3, yMax + pointsScale + 10,QPen(Qt::black, 4));
 }
 
 
@@ -65,17 +78,12 @@ void PlotGraph::drawBackground(QPainter *painter, const QRectF &rect)
 
     painter->setPen(QPen(Qt::black, 3));
     painter->drawLine(
-                QPointF(sceneX + 10, sceneY + 10),
-                QPointF(sceneX + 10, sceneY + sceneHeigth - 10));
+                QPointF(xOrigin, yMax),
+                QPointF(xOrigin, yOrigin + 10));
     painter->drawLine(
-                QPointF(sceneX + 5, sceneY + sceneHeigth - 20),
-                QPointF(sceneX + sceneWidth - 10, sceneY + sceneHeigth - 20));
+                QPointF(xOrigin - 5, yOrigin),
+                QPointF(xMax, yOrigin));
 
-    //legenda
-    painter->setPen(QPen(Qt::blue, 3));
-    painter->drawEllipse(QPointF(sceneX+20,sceneY+30),5,5);
-    QGraphicsTextItem *text1 = this->addText("Alimento"); //fredmudar
-    text1->setPos(sceneX+30,sceneY+20);
 }
 
 double PlotGraph::maxValue(std::vector<double> & x)

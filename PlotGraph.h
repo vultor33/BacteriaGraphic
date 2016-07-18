@@ -3,6 +3,7 @@
 
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <QGraphicsTextItem>
 #include <vector>
 
 
@@ -11,7 +12,7 @@ class PlotGraph : public QGraphicsScene
     Q_OBJECT
 
 public:
-    PlotGraph(qreal sizeW, qreal sizeH, qreal startingPoint, QWidget *parent = 0);
+    PlotGraph(qreal sizeW, qreal sizeH, qreal startingPoint, QString title = "", QWidget *parent = 0);
 
     void updatePoint(double newPoint);
 
@@ -29,6 +30,8 @@ private:
     int xMax;
     int yMax;
 
+    qreal pointsScale;
+    QGraphicsTextItem * pointsScaleLabel;
     qreal oldPoint;
     int addingLine;
 

@@ -21,7 +21,7 @@ MainControl::MainControl(QWidget *parent) :
 
     qreal plot1W = ui->plotAlimento->width();
     qreal plot1H = ui->plotAlimento->height();
-    graphAlimento_ = new PlotGraph(plot1W, plot1H,bacSystem_->getAlimento0());
+    graphAlimento_ = new PlotGraph(plot1W, plot1H,bacSystem_->getAlimento0(),"ALIMENTO");
     ui->plotAlimento->setScene(graphAlimento_);
 
     timerId = startTimer(1000 / 1);
