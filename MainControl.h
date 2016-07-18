@@ -19,6 +19,9 @@ public:
     explicit MainControl(QWidget *parent = 0);
     ~MainControl();
 
+private slots:
+    void on_startButton_clicked();
+
 private:
     Ui::MainControl *ui;
     int timerId;

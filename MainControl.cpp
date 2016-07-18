@@ -39,12 +39,16 @@ MainControl::MainControl(QWidget *parent) :
     graphResiduo_ = new PlotGraph(plot4W, plot4H,bacSystem_->getResiduo0(), 1, "RESIDUO");
     ui->plotResiduo->setScene(graphResiduo_);
 
-    timerId = startTimer(1000 / 20);
 }
 
 MainControl::~MainControl()
 {
     delete ui;
+}
+
+void MainControl::on_startButton_clicked()
+{
+    timerId = startTimer(1000 / 20);
 }
 
 void MainControl::timerEvent(QTimerEvent *event)
