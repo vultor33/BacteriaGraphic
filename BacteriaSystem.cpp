@@ -6,12 +6,12 @@
 BacteriaSystem::BacteriaSystem(double timeStep_in)
 {
     timeStep = timeStep_in;
-    constAbsorcao = 0.1;
+    constAbsorcao = 0.05;
     constReacaoAB = 1;
-    constFormResiduo = 1;
+    constFormResiduo = 0.1;
     constEliminacaoResiduo = 1;
     porcentagemMaxDeDivisao = 0.5e0;
-    maxToxicidade = 30;
+    maxToxicidade = 50;
     valorParaReproducao = 5;
 
     //condicoes inicias
@@ -19,7 +19,7 @@ BacteriaSystem::BacteriaSystem(double timeStep_in)
     residuoFora = 10;
 
     alimentoNaCelula.push_back(0);
-    reagenteNaCelula.push_back(20);
+    reagenteNaCelula.push_back(40);
     metabolitoNaCelula.push_back(0);
     residuoNaCelula.push_back(0);
 
@@ -75,9 +75,9 @@ void BacteriaSystem::propagate()
                 if(residuoNaCelula[i] < 0)
                     residuoNaCelula[i] = 0;
 
-               // qDebug() << "i:  " << i << "  ali:  " << alimentoNaCelula[i] << "  rea:  " << reagenteNaCelula[i]
-               //       << "  met:  " << metabolitoNaCelula[i] << "  res:  " << residuoNaCelula[i]
-               //          << " alimentoforatemp:  " << alimentoForaTemp << "  resForatemp  " << residuoForaTemp;
+                qDebug() << "i:  " << i << "  ali:  " << alimentoNaCelula[i] << "  rea:  " << reagenteNaCelula[i]
+                      << "  met:  " << metabolitoNaCelula[i] << "  res:  " << residuoNaCelula[i]
+                         << " alimentoforatemp:  " << alimentoForaTemp << "  resForatemp  " << residuoForaTemp;
             }
         }
         alimentoFora += alimentoForaTemp;
@@ -92,13 +92,35 @@ void BacteriaSystem::propagate()
             double totalSpecies = alimentoNaCelula[i] + reagenteNaCelula[i] + metabolitoNaCelula[i] + residuoNaCelula[i];
             if(totalSpecies > maxToxicidade)
                 alive[i] = false;
+
+            if(metabolitoNaCelula[i] > valorParaReproducao)
+            {
+                double divisao = randcpp(0.1,0.9);
+                double aN = alimentoNaCelula[i] * divisao;
+                double rN = reagenteNaCelula[i] * divisao;
+                double mN = metabolitoNaCelula[i] * divisao;
+                double resN = residuoNaCelula[i] * divisao;
+                alimentoNaCelula.push_back(aN);
+                reagenteNaCelula.push_back(rN);
+                metabolitoNaCelula.push_back(mN);
+                residuoNaCelula.push_back(resN);
+                kAbsorcao.push_back(constAbsorcao);
+                kReacaoAB.push_back(constReacaoAB);
+                kFormResiduo.push_back(constFormResiduo);
+                kEliminacaoResiduo.push_back(constEliminacaoResiduo);
+                alive.push_back(true);
+
+                alimentoNaCelula[i] = (1.0e0 - divisao) * alimentoNaCelula[i];
+                reagenteNaCelula[i] = (1.0e0 - divisao) * reagenteNaCelula[i];
+                metabolitoNaCelula[i] = (1.0e0 - divisao) * metabolitoNaCelula[i];
+                residuoNaCelula[i] = (1.0e0 - divisao) * residuoNaCelula[i];
+            }
         }
 
         // testar quem reproduz.
 
         k++;
-    } while(k < 1000);
-
+    } while(k < 100);
 }
 
 double BacteriaSystem::advanceEquations(double dx)

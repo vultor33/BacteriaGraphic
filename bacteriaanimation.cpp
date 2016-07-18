@@ -56,7 +56,6 @@ bacteriaanimation::bacteriaanimation(qreal animW, qreal animH, QWidget *parent)
     allBacterias[0]->setPos((startI + 0.5) * bacHorizonSize + sceneX, (startJ + 0.5) * bacVertSize + sceneY);
 
     // as bacterias sao indistinguiveis.
-    timerId = startTimer(1000 / 0.5);
     timerAnimation = startTimer(1000 / 5);
 }
 
@@ -93,8 +92,17 @@ void bacteriaanimation::bacteriaUpdate(std::vector<bool> &alive)
             this->addItem(bactn);
         }
     }
-
-
+    while((int)alive.size() > allBacterias.size())
+    {
+        int iSlot, jSlot;
+        findSlotToReplicate(iSlot, jSlot);
+        int iBac = allBacterias.size();
+        bacteriaGrid[iSlot][jSlot] = iBac;
+        bacteria * bactn = new bacteria();
+        this->addItem(bactn);
+        allBacterias << bactn;
+        allBacterias[iBac]->setPos((iSlot + 0.5) * bacHorizonSize + sceneX, (jSlot + 0.5) * bacVertSize + sceneY);
+    }
 }
 
 void bacteriaanimation::timerEvent(QTimerEvent *event)
