@@ -6,7 +6,19 @@
 class BacteriaSystem
 {
 public:
-    BacteriaSystem(double timeStep_in = 1.0e-2);
+    BacteriaSystem(double constAbsorcao_in,
+                   double constReacaoAB_in,
+                   double constFormResiduo_in,
+                   double constEliminacaoResiduo_in,
+                   double maxToxicidade_in,
+                   double valorParaReproducao_in,
+                   double alimentoFora_in,
+                   double residuoFora_in,
+                   double alimentoInic_in,
+                   double reagenteInic_in,
+                   double metabolitoInic_in,
+                   double residuoInic_in,
+                   double timeStep_in = 1.0e-2);
 
     void propagate();
 

@@ -107,26 +107,6 @@ void bacteriaanimation::bacteriaUpdate(std::vector<bool> &alive)
 
 void bacteriaanimation::timerEvent(QTimerEvent *event)
 {
-    //qDebug() << "Timer ID:" << event->timerId();
-
-    /*
-    if (event->timerId() == timerId)
-    {
-        if(allBacterias.size() < nHorizon * nVert)
-        {
-            int iSlot, jSlot;
-            findSlotToReplicate(iSlot, jSlot);
-            int iBac = allBacterias.size();
-            bacteriaGrid[iSlot][jSlot] = iBac;
-            bacteria * bactn = new bacteria();
-            this->addItem(bactn);
-            allBacterias << bactn;
-            allBacterias[iBac]->setPos((iSlot + 0.5) * bacHorizonSize + sceneX, (jSlot + 0.5) * bacVertSize + sceneY);
-        }
-    }
-    */
-
-
     if (event->timerId() == timerAnimation)
     {
         timerAnimation = startTimer(1000 / 5);

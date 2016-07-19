@@ -21,11 +21,16 @@ public:
 
 private slots:
     void on_startButton_clicked();
+    void on_stopButton_clicked();
 
 private:
     Ui::MainControl *ui;
     int timerId;
     void timerEvent(QTimerEvent *event);
+
+    void startSimulation();
+
+    void stopSimulation();
 
     bacteriaanimation * bacta_;
     BacteriaSystem * bacSystem_;

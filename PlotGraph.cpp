@@ -39,25 +39,25 @@ PlotGraph::PlotGraph(qreal sizeW, qreal sizeH, qreal startingPoint, qreal points
 }
 
 
-
 void PlotGraph::updatePoint(double newPoint)
 {
     //qDebug() << "Timer ID:" << event->timerId();
 
     //ATENCAO - y e invertido
-
-    addingLine++;
     qreal xStep = 1;
-    qreal yStep = ((yOrigin-yMax)/2) / pointsScale;
-    qreal y1a = oldPoint;
-    qreal y1b = newPoint;
-    this->addLine(xOrigin + (-1 + addingLine) * xStep,
-                  yOrigin - y1a * yStep,
-                  xOrigin + addingLine * xStep,
-                  yOrigin - y1b * yStep,
-                  QPen(Qt::blue, 2));
-
-    oldPoint = newPoint;
+    addingLine++;
+    if((xOrigin + addingLine * xStep) < xMax)
+    {
+        qreal yStep = ((yOrigin-yMax)/2) / pointsScale;
+        qreal y1a = oldPoint;
+        qreal y1b = newPoint;
+        this->addLine(xOrigin + (-1 + addingLine) * xStep,
+                    yOrigin - y1a * yStep,
+                    xOrigin + addingLine * xStep,
+                    yOrigin - y1b * yStep,
+                    QPen(Qt::blue, 2));
+        oldPoint = newPoint;
+    }
 }
 
 void PlotGraph::drawBackground(QPainter *painter, const QRectF &rect)

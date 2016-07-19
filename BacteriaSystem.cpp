@@ -3,25 +3,41 @@
 #include <QDebug>
 #include <math.h>
 
-BacteriaSystem::BacteriaSystem(double timeStep_in)
+BacteriaSystem::BacteriaSystem(
+        double constAbsorcao_in,
+        double constReacaoAB_in,
+        double constFormResiduo_in,
+        double constEliminacaoResiduo_in,
+        double maxToxicidade_in,
+        double valorParaReproducao_in,
+        double alimentoFora_in,
+        double residuoFora_in,
+        double alimentoInic_in,
+        double reagenteInic_in,
+        double metabolitoInic_in,
+        double residuoInic_in,
+        double timeStep_in)
+
 {
+    qDebug() << constAbsorcao_in << "  " << constEliminacaoResiduo_in << "  " << alimentoFora_in;
+
     timeStep = timeStep_in;
-    constAbsorcao = 0.05;
-    constReacaoAB = 1;
-    constFormResiduo = 0.1;
-    constEliminacaoResiduo = 1;
+    constAbsorcao = constAbsorcao_in;
+    constReacaoAB = constReacaoAB_in;
+    constFormResiduo = constFormResiduo_in;
+    constEliminacaoResiduo = constEliminacaoResiduo_in;
     porcentagemMaxDeDivisao = 0.5e0;
-    maxToxicidade = 41;
-    valorParaReproducao = 5;
+    maxToxicidade = maxToxicidade_in;
+    valorParaReproducao = valorParaReproducao_in;
 
     //condicoes inicias
-    alimentoFora = 100;
-    residuoFora = 10;
+    alimentoFora = alimentoFora_in;
+    residuoFora = residuoFora_in;
 
-    alimentoNaCelula.push_back(0);
-    reagenteNaCelula.push_back(40);
-    metabolitoNaCelula.push_back(0);
-    residuoNaCelula.push_back(0);
+    alimentoNaCelula.push_back(alimentoInic_in);
+    reagenteNaCelula.push_back(reagenteInic_in);
+    metabolitoNaCelula.push_back(metabolitoInic_in);
+    residuoNaCelula.push_back(residuoInic_in);
 
     kAbsorcao.push_back(constAbsorcao);
     kReacaoAB.push_back(constReacaoAB);
