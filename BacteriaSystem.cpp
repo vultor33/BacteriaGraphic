@@ -19,8 +19,6 @@ BacteriaSystem::BacteriaSystem(
         double timeStep_in)
 
 {
-    qDebug() << constAbsorcao_in << "  " << constEliminacaoResiduo_in << "  " << alimentoFora_in;
-
     timeStep = timeStep_in;
     constAbsorcao = constAbsorcao_in;
     constReacaoAB = constReacaoAB_in;

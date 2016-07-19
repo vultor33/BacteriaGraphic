@@ -16,6 +16,8 @@ MainControl::MainControl(QWidget *parent) :
     qreal animH = ui->animation->height();
     bacta_ = new bacteriaanimation(animW, animH);
     ui->animation->setScene(bacta_);
+
+    running = false;
 }
 
 MainControl::~MainControl()
@@ -25,14 +27,19 @@ MainControl::~MainControl()
 
 void MainControl::on_startButton_clicked()
 {
-    startSimulation();
-    timerId = startTimer(1000 / 20);
+    if(!running)
+    {
+        running = true;
+        startSimulation();
+        timerId = startTimer(1000 / 20);
+    }
 }
 
 void MainControl::on_stopButton_clicked()
 {
     killTimer(timerId);
     stopSimulation();
+    running = false;
 }
 
 void MainControl::timerEvent(QTimerEvent *event)
@@ -72,22 +79,22 @@ void MainControl::startSimulation()
 
     qreal plot1W = ui->plotAlimento->width();
     qreal plot1H = ui->plotAlimento->height();
-    graphAlimento_ = new PlotGraph(plot1W, plot1H,bacSystem_->getAlimento0(), 40,"ALIMENTO");
+    graphAlimento_ = new PlotGraph(plot1W, plot1H,bacSystem_->getAlimento0(), ui->lineScaleAlimento->text().toDouble(),"ALIMENTO");
     ui->plotAlimento->setScene(graphAlimento_);
 
     qreal plot2W = ui->plotReagente->width();
     qreal plot2H = ui->plotReagente->height();
-    graphReagente_ = new PlotGraph(plot2W, plot2H,bacSystem_->getReagente0(), 40, "REAGENTE");
+    graphReagente_ = new PlotGraph(plot2W, plot2H,bacSystem_->getReagente0(), ui->lineScaleReagente->text().toDouble(), "REAGENTE");
     ui->plotReagente->setScene(graphReagente_);
 
     qreal plot3W = ui->plotMetabolito->width();
     qreal plot3H = ui->plotMetabolito->height();
-    graphMetabolito_ = new PlotGraph(plot3W, plot3H,bacSystem_->getMetabolito0(), 5, "METABOLITO");
+    graphMetabolito_ = new PlotGraph(plot3W, plot3H,bacSystem_->getMetabolito0(), ui->lineScaleMetabolito->text().toDouble(), "METABOLITO");
     ui->plotMetabolito->setScene(graphMetabolito_);
 
     qreal plot4W = ui->plotResiduo->width();
     qreal plot4H = ui->plotResiduo->height();
-    graphResiduo_ = new PlotGraph(plot4W, plot4H,bacSystem_->getResiduo0(), 1, "RESIDUO");
+    graphResiduo_ = new PlotGraph(plot4W, plot4H,bacSystem_->getResiduo0(), ui->lineScaleResiduo->text().toDouble(), "RESIDUO");
     ui->plotResiduo->setScene(graphResiduo_);
 }
 

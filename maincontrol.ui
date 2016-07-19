@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>887</width>
+    <width>924</width>
     <height>605</height>
    </rect>
   </property>
@@ -27,7 +27,7 @@
    <widget class="QGraphicsView" name="plotReagente">
     <property name="geometry">
      <rect>
-      <x>670</x>
+      <x>710</x>
       <y>10</y>
       <width>201</width>
       <height>201</height>
@@ -63,7 +63,7 @@
    <widget class="QGraphicsView" name="plotResiduo">
     <property name="geometry">
      <rect>
-      <x>670</x>
+      <x>710</x>
       <y>220</y>
       <width>201</width>
       <height>201</height>
@@ -73,7 +73,7 @@
    <widget class="QGraphicsView" name="plotAlimento">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>470</x>
       <y>10</y>
       <width>201</width>
       <height>201</height>
@@ -83,7 +83,7 @@
    <widget class="QGraphicsView" name="plotMetabolito">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>470</x>
       <y>220</y>
       <width>201</width>
       <height>201</height>
@@ -402,13 +402,65 @@
      <string>1</string>
     </property>
    </widget>
+   <widget class="QLineEdit" name="lineScaleReagente">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>100</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>40</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineScaleResiduo">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>310</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>1</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineScaleAlimento">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>100</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>40</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineScaleMetabolito">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>310</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>5</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>887</width>
+     <width>924</width>
      <height>21</height>
     </rect>
    </property>

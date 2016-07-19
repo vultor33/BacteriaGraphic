@@ -29,6 +29,7 @@ private:
     void timerEvent(QTimerEvent *event);
 
     void startSimulation();
+    bool running;
 
     void stopSimulation();
 

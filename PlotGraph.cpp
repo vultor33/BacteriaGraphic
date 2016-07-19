@@ -6,6 +6,11 @@
 #include <string>
 #include <sstream>
 
+PlotGraph::~PlotGraph()
+{
+//    delete pointsScaleLabel;
+}
+
 PlotGraph::PlotGraph(qreal sizeW, qreal sizeH, qreal startingPoint, qreal pointsScale_in, QString title, QWidget *parent)
     :QGraphicsScene(parent)
 {
@@ -17,7 +22,7 @@ PlotGraph::PlotGraph(qreal sizeW, qreal sizeH, qreal startingPoint, qreal points
 
     this->setSceneRect(sceneX, sceneY, sceneWidth, sceneHeigth);
 
-    xOrigin = sceneX + 30;
+    xOrigin = sceneX + 10;
     yOrigin = sceneY + sceneHeigth - 20;
     xMax = sceneX + sceneWidth - 10;
     yMax = sceneY + 10;
@@ -31,17 +36,17 @@ PlotGraph::PlotGraph(qreal sizeW, qreal sizeH, qreal startingPoint, qreal points
 
     //pointsScale = (yOrigin-yMax)/2;
     pointsScale = pointsScale_in;
-    QString yMed = QString::number(pointsScale);
-    QGraphicsTextItem *pScale = this->addText(yMed);
-    pointsScaleLabel = pScale;
-    pointsScaleLabel->setPos(xOrigin - 25,yMax + (yOrigin - yMax)/2);
+//    QString yMed = QString::number(pointsScale);
+//    QGraphicsTextItem *pScale = this->addText(yMed);
+//    pointsScaleLabel = pScale;
+//    pointsScaleLabel->setPos(xOrigin - 25,yMax + (yOrigin - yMax)/2);
     this->addLine(xOrigin - 3, yMax + (yOrigin-yMax)/2 + 10, xOrigin + 3, yMax + (yOrigin-yMax)/2 + 10,QPen(Qt::black, 4));
 }
 
 
 void PlotGraph::updatePoint(double newPoint)
 {
-    //qDebug() << "Timer ID:" << event->timerId();
+    // observar a variacao do y e o maximo
 
     //ATENCAO - y e invertido
     qreal xStep = 1;
